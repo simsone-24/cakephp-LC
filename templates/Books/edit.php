@@ -24,6 +24,11 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('year');
+                    echo $this->Form->control('author_id', [
+    'label' => 'Author',
+    'options' => $authors,
+    'empty' => 'Select an author'
+]);
                     echo $this->Form->control('rate');
                 ?>
             </fieldset>

@@ -43,7 +43,12 @@ class PublishersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
+        
+        $this->belongsToMany('Authors', [
+            'foreignKey' => 'publisher_id',
+            'targetForeignKey' => 'author_id',
+            'joinTable' => 'authors_publishers',
+        ]);
     }
 
     /**
@@ -80,9 +85,8 @@ class PublishersTable extends Table
 
         $validator
             ->dateTime('deleted');
-            // ->allowEmptyDateTime('deleted');
+        // ->allowEmptyDateTime('deleted');
 
         return $validator;
     }
-
 }

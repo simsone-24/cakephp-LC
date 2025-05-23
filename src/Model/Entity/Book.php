@@ -31,6 +31,7 @@ class Book extends Entity
         'name' => true,
         'year' => true,
         'rate' => true,
+        'author_id'=>true,
         'created' => true,
         'modified' => true,
         'deleted' => true,

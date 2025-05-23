@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -33,7 +34,10 @@ class PublishersController extends AppController
     public function view($id = null)
     {
         $publisher = $this->Publishers->get($id, contain: []);
-        $this->set(compact('publisher'));
+
+        $authors = $this->Publishers->Authors->find('list')->toArray();
+        $this->set(compact('publisher', 'authors'));
+        // $this->set(compact('publisher'));
     }
 
     /**
@@ -44,6 +48,8 @@ class PublishersController extends AppController
     public function add()
     {
         $publisher = $this->Publishers->newEmptyEntity();
+        $authors = $this->Publishers->Authors->find('list')->toArray();
+
         if ($this->request->is('post')) {
             $publisher = $this->Publishers->patchEntity($publisher, $this->request->getData());
             if ($this->Publishers->save($publisher)) {
@@ -53,7 +59,8 @@ class PublishersController extends AppController
             }
             $this->Flash->error(__('The publisher could not be saved. Please, try again.'));
         }
-        $this->set(compact('publisher'));
+        $this->set(compact('publisher', 'authors'));
+        // $this->set(compact('publisher'));
     }
 
     /**
@@ -75,7 +82,8 @@ class PublishersController extends AppController
             }
             $this->Flash->error(__('The publisher could not be saved. Please, try again.'));
         }
-        $this->set(compact('publisher'));
+        $authors = $this->Publishers->Authors->find('list')->toArray();
+        $this->set(compact('publisher', 'authors'));
     }
 
     /**

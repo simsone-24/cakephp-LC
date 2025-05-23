@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -19,6 +20,7 @@ class BooksController extends AppController
     {
         $query = $this->Books->find();
         $books = $this->paginate($query);
+        
 
         $this->set(compact('books'));
     }
@@ -33,7 +35,8 @@ class BooksController extends AppController
     public function view($id = null)
     {
         $book = $this->Books->get($id, contain: []);
-        $this->set(compact('book'));
+         $authors = $this->Books->Authors->find('list')->toArray();
+    $this->set(compact('book', 'authors'));
     }
 
     /**
@@ -65,17 +68,20 @@ class BooksController extends AppController
      */
     public function edit($id = null)
     {
+        
         $book = $this->Books->get($id, contain: []);
+        $authors = $this->Books->Authors->find('list')->toArray();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $book = $this->Books->patchEntity($book, $this->request->getData());
             if ($this->Books->save($book)) {
                 $this->Flash->success(__('The book has been saved.'));
-
+                
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
-        $this->set(compact('book'));
+        $this->set(compact('book', 'authors'));
+        // $this->set(compact('book'));
     }
 
     /**

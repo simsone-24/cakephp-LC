@@ -24,7 +24,14 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('email');
-                    echo $this->Form->control('deleted', ['empty' => true]);
+                    echo $this->Form->control('publishers_id', [
+    'type' => 'select',
+    // 'multiple' => true,
+    'options' => $publishers,
+    'label' => 'Select Publishers'
+]);
+
+                    // echo $this->Form->control('deleted', ['empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

@@ -31,6 +31,7 @@ class Publisher extends Entity
         'name' => true,
         'email' => true,
         'address' => true,
+        'author_id'=>true,
         'created' => true,
         'modified' => true,
         'deleted' => true,

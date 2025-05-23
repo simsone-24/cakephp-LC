@@ -44,6 +44,14 @@ class BooksTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        // $this->hasMany('Authors',[
+        //     'foreignKey'=>'author_id',
+        // ]);
+        $this->belongsTo('Authors', [
+            'foreignKey' => 'author_id'
+        ]);
+
     }
 
     /**

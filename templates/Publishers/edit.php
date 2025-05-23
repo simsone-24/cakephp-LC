@@ -25,6 +25,13 @@
                     echo $this->Form->control('name');
                     echo $this->Form->control('email');
                     echo $this->Form->control('address');
+                    echo $this->Form->control('authors._ids', [
+    'type' => 'select',
+    // 'multiple' => true,
+    'options' => $authors,
+    'label' => 'Select Authors'
+]);
+
                     // echo $this->Form->control('created_at');
                     // echo $this->Form->control('modified_at');
                     // echo $this->Form->control('deleted_at', ['empty' => true]);

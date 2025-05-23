@@ -33,7 +33,8 @@ class AuthorsController extends AppController
     public function view($id = null)
     {
         $author = $this->Authors->get($id, contain: []);
-        $this->set(compact('author'));
+        $publishers=$this->Authors->Publishers->find('list')->toArray();
+        $this->set(compact('author','publishers'));
     }
 
     /**
@@ -44,6 +45,8 @@ class AuthorsController extends AppController
     public function add()
     {
         $author = $this->Authors->newEmptyEntity();
+        $publishers = $this->Authors->Publishers->find('list')->toArray();
+
         if ($this->request->is('post')) {
             $author = $this->Authors->patchEntity($author, $this->request->getData());
             if ($this->Authors->save($author)) {
@@ -53,7 +56,9 @@ class AuthorsController extends AppController
             }
             $this->Flash->error(__('The author could not be saved. Please, try again.'));
         }
-        $this->set(compact('author'));
+        // $this->set(compact('author'));
+        $this->set(compact('author', 'publishers'));
+
     }
 
     /**
@@ -66,16 +71,19 @@ class AuthorsController extends AppController
     public function edit($id = null)
     {
         $author = $this->Authors->get($id, contain: []);
+        $publishers = $this->Authors->Publishers->find('list')->toArray();
         if ($this->request->is(['patch', 'post', 'put'])) {
             $author = $this->Authors->patchEntity($author, $this->request->getData());
             if ($this->Authors->save($author)) {
                 $this->Flash->success(__('The author has been saved.'));
-
+                
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The author could not be saved. Please, try again.'));
         }
-        $this->set(compact('author'));
+        $this->set(compact('author', 'publishers'));
+        // $this->set(compact('author'));
+        
     }
 
     /**

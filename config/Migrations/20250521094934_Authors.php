@@ -17,6 +17,7 @@ class Authors extends BaseMigration
          $this->table('authors')
             ->addColumn('name', 'string', ['limit' => 50])
             ->addColumn('email', 'string', ['limit' => 100])
+            ->addColumn('publisher_id','integer')
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime') 
             ->addColumn('deleted', 'datetime', ['null' => true])

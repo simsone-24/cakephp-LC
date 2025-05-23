@@ -18,6 +18,7 @@ class Books extends BaseMigration
             ->addColumn('name', 'string', ['limit' => 50])
             ->addColumn('year', 'string', ['limit' => 100])
             ->addColumn('rate', 'string')
+            ->addColumn('author_id','integer',['null' => true])
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime') 
             ->addColumn('deleted', 'datetime', ['null' => true])

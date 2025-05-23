@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Book $book
@@ -29,6 +30,11 @@
                 <tr>
                     <th><?= __('Rate') ?></th>
                     <td><?= h($book->rate) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('author') ?></th>
+                    <td><?=h($authors[$book->author_id]);
+ ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

@@ -29,6 +29,7 @@ class Author extends Entity
     protected array $_accessible = [
         'name' => true,
         'email' => true,
+        'publisher_id'=>true,
         'created' => true,
         'modified' => true,
         'deleted' => true,
