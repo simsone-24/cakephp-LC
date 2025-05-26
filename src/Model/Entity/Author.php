@@ -27,8 +27,11 @@ class Author extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
+        'image'=>true,
         'name' => true,
         'email' => true,
+        'gender'=>true,
+        'status'=>true,
         'publisher_id'=>true,
         'created' => true,
         'modified' => true,

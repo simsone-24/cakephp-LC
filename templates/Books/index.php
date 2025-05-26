@@ -5,24 +5,28 @@
  */
 ?>
 <div class="books index content">
-    <?= $this->Html->link(__('New Book'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('New Book'), ['action' => 'form'], ['class' => 'button float-right']) ?>
     <h3><?= __('Books') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
+                    <th><?= $this->Paginator->sort('image') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('year') ?></th>
+                    <th><?= $this->Paginator->sort('publish_year') ?></th>
                     <th><?= $this->Paginator->sort('rate') ?></th>
+                    <th><?= $this->Paginator->sort('status') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($books as $book): ?>
-                <tr>
+                    <tr>
+                    <td><img src="<?= $this->url->image($book->image) ?>" alt="Book Cover" height="50px" ></td>
                     <td><?= h($book->name) ?></td>
-                    <td><?= h($book->year) ?></td>
+                    <td><?= h($book->publish_year) ?></td>
                     <td><?= h($book->rate) ?></td>
+                    <td><?= h($book->status=='1'?'Available':'Not Available') ?></td>
                     <td class="actions">
                             <?= $this->Html->link('<i class="bi bi-eye-fill fs-5 text-white"></i>', ['action' => 'view', $book->id], 
                             [
@@ -30,7 +34,7 @@
                                 'class' => 'btn btn-info btn-md px-3 py-1  text-dark',
                                 'title' => 'View Publisher'
                             ]) ?>
-                            <?= $this->Html->link('<i class="bi bi-pencil-square fs-5 text-white"></i>', ['action' => 'edit', $book->id],
+                            <?= $this->Html->link('<i class="bi bi-pencil-square fs-5 text-white"></i>', ['controller'=>'Books','action' => 'form',$book->id],
                             [
                                 'escape'=>false,
                                 'class' => 'btn btn-primary btn-md px-3 py-1  text-dark',

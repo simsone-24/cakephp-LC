@@ -1,8 +1,12 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Book $book
  */
+
+use function PHPSTORM_META\type;
+
 ?>
 <div class="row">
     <aside class="column">
@@ -12,18 +16,7 @@
         </div>
     </aside>
     <div class="column column-80">
-        <div class="books form content">
-            <?= $this->Form->create($book) ?>
-            <fieldset>
-                <legend><?= __('Add Book') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('year');
-                    echo $this->Form->control('rate');
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
+        <div class="books  content">
         </div>
     </div>
 </div>

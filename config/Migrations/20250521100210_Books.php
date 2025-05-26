@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Migrations\BaseMigration;
@@ -14,13 +15,15 @@ class Books extends BaseMigration
      */
     public function change(): void
     {
-         $this->table('books')
+        $this->table('books')
+            ->addColumn('image', 'string')
             ->addColumn('name', 'string', ['limit' => 50])
-            ->addColumn('year', 'string', ['limit' => 100])
+            ->addColumn('publish_year', 'string', ['limit' => 100])
             ->addColumn('rate', 'string')
-            ->addColumn('author_id','integer',['null' => true])
+            ->addColumn('author_id', 'integer', ['null' => true])
+            ->addColumn('status', 'boolean')
             ->addColumn('created', 'datetime')
-            ->addColumn('modified', 'datetime') 
+            ->addColumn('modified', 'datetime')
             ->addColumn('deleted', 'datetime', ['null' => true])
             ->create();
     }

@@ -13,12 +13,16 @@
     </aside>
     <div class="column column-80">
         <div class="authors form content">
-            <?= $this->Form->create($author) ?>
+            <?= $this->Form->create($author,[
+                'type'=>'file'
+            ]) ?>
             <fieldset>
                 <legend><?= __('Add Author') ?></legend>
                 <?php
                     echo $this->Form->control('name');
-                    echo $this->Form->control('email');
+                    echo $this->Form->control('email',[
+                        'type'=>'email'
+                    ]);
                     // echo $this->Form->control('deleted', ['empty' => true]);
                 ?>
             </fieldset>

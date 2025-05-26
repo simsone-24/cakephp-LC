@@ -24,7 +24,7 @@
                 <?php
                     echo $this->Form->control('name');
                     echo $this->Form->control('email');
-                    echo $this->Form->control('publishers_id', [
+                    echo $this->Form->control('publisher_id', [
     'type' => 'select',
     // 'multiple' => true,
     'options' => $publishers,

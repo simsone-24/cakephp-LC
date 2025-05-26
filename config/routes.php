@@ -22,6 +22,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use Cake\Controller\Controller;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
@@ -60,6 +61,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
         $builder->connect('/form', ['controller' => 'Crud', 'action' => 'formView']);
 
+        $builder->connect('add-book',['Controller'=>'Books','action'=>'display','form']);
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */

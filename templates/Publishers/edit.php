@@ -25,7 +25,7 @@
                     echo $this->Form->control('name');
                     echo $this->Form->control('email');
                     echo $this->Form->control('address');
-                    echo $this->Form->control('authors._ids', [
+                    echo $this->Form->control('author_id', [
     'type' => 'select',
     // 'multiple' => true,
     'options' => $authors,

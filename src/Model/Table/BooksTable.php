@@ -45,9 +45,6 @@ class BooksTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        // $this->hasMany('Authors',[
-        //     'foreignKey'=>'author_id',
-        // ]);
         $this->belongsTo('Authors', [
             'foreignKey' => 'author_id'
         ]);
@@ -69,10 +66,10 @@ class BooksTable extends Table
             ->notEmptyString('name');
 
         $validator
-            ->scalar('year')
-            ->maxLength('year', 100)
-            ->requirePresence('year', 'create')
-            ->notEmptyString('year');
+            ->scalar('publish_year')
+            ->maxLength('publish_year', 100)
+            ->requirePresence('publish_year', 'create')
+            ->notEmptyString('publish_year');
 
         $validator
             ->scalar('rate')

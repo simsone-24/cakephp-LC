@@ -15,9 +15,12 @@ class Authors extends BaseMigration
     public function change(): void
     {
          $this->table('authors')
+         ->addColumn('image','string')
             ->addColumn('name', 'string', ['limit' => 50])
             ->addColumn('email', 'string', ['limit' => 100])
-            ->addColumn('publisher_id','integer')
+            ->addColumn('gender','string')
+            ->addColumn('status','boolean')
+            ->addColumn('publisher_id','integer',['null'=>true])
             ->addColumn('created', 'datetime')
             ->addColumn('modified', 'datetime') 
             ->addColumn('deleted', 'datetime', ['null' => true])

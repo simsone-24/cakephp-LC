@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\Entity\Publisher;
+
 /**
  * Publishers Controller
  *
@@ -75,6 +77,8 @@ class PublishersController extends AppController
         $publisher = $this->Publishers->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $publisher = $this->Publishers->patchEntity($publisher, $this->request->getData());
+            debug($publisher);
+            die;
             if ($this->Publishers->save($publisher)) {
                 $this->Flash->success(__('The publisher has been saved.'));
 

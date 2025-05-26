@@ -28,10 +28,12 @@ class Book extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
+        'image'=>true,
         'name' => true,
-        'year' => true,
+        'publish_year' => true,
         'rate' => true,
         'author_id'=>true,
+        'status'=>true,
         'created' => true,
         'modified' => true,
         'deleted' => true,
