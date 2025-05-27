@@ -4,8 +4,40 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Author> $authors
  */
+
+use Cake\Controller\Controller;
+
 ?>
 <div class="authors index content">
+    <div class="row">
+        <div class="name col-3">
+            <?= $this->Form->create(null, [
+                'type' => 'post',
+                'url' => ['controller' => 'Authors', 'action' => 'record']
+            ]) ?>
+            <?= $this->form->control('name', [
+                'label' => false,
+                'placeholder' => 'Author',
+            ]) ?>
+        </div>
+        <div class="status col-3">
+            <?= $this->form->control('status', [
+                'label' => false,
+                'options' => [ '1' => 'Active', '0' => 'In Active'],
+                // 'default'=>$field,
+                'class' => 'form-select',
+                'empty' => 'Status'
+            ]) ?>
+        </div>
+        <div class="button col-1">
+            <?= $this->Form->button('search', [
+                'class' => 'btn btn-sm text-center '
+            ]) ?>
+            <?= $this->Form->end() ?>
+        </div>
+
+    </div>
+
     <?= $this->Html->link(__('New Author'), ['action' => 'form'], ['class' => 'button float-right']) ?>
     <h3><?= __('Authors') ?></h3>
     <div class="table-responsive">
@@ -46,7 +78,8 @@
                                     'class' => 'btn btn-primary btn-md px-3 py-1  text-dark',
                                 ]
                             ) ?>
-                            <?= $this->Form->postLink('<i class="bi bi-trash3-fill fs-5 text-white"></i>',
+                            <?= $this->Form->postLink(
+                                '<i class="bi bi-trash3-fill fs-5 text-white"></i>',
                                 ['action' => 'delete', $author->id],
                                 [
                                     'method' => 'delete',

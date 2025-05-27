@@ -28,9 +28,11 @@ class Publisher extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
+        'image'=>true,
         'name' => true,
         'email' => true,
         'address' => true,
+        'status'=>true,
         'author_id'=>true,
         'created' => true,
         'modified' => true,

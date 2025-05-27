@@ -50,44 +50,15 @@ class AuthorsController extends AppController
             $author = $this->Authors->newEmptyEntity();
             $this->set(compact('author'));
             $this->render('form');
-            // $author = $this->Authors->get($id, contain: []);
-            // debug($author);
-            // die();
-            // $publisher = $this->Authors->Publishers->find('list')->toArray();
-            // if ($this->request->is(['patch', 'post', 'put'])) {
-            //     $author = $this->Authors->patchEntity($author, $this->request->getData());
-            //     debug($author);
-            //     die;
-            //     if ($this->Authors->save($author)) {
-            //         $this->Flash->success(__('The author has been saved.'));
-
-            //         return $this->redirect(['action' => 'index']);
-            //     }
-            //     $this->Flash->error(__('The author could not be saved. Please, try again.'));
-            // }
-            // $this->set(compact('author', 'publishers'));
-        } else {
+        } 
+        
+        else {
             $author = $this->Authors->get($id);
             $this->set(compact('author'));
             $this->render('form');
         }
 
-        // else {
-        //     $author = $this->Authors->newEmptyEntity();
-        // $publishers = $this->Authors->Publishers->find('list')->toArray();
-
-        // if ($this->request->is('post')) {
-        //     $author = $this->Authors->patchEntity($author, $this->request->getData());
-        //     if ($this->Authors->save($author)) {
-        //         $this->Flash->success(__('The author has been saved.'));
-
-        //         return $this->redirect(['action' => 'index']);
-        //     }
-        //     $this->Flash->error(__('The author could not be saved. Please, try again.'));
-        // }
-        // // $this->set(compact('author'));
-        // $this->set(compact('author', 'publishers'));
-        // }
+       
     }
 
     public function add()
@@ -176,5 +147,26 @@ class AuthorsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function record()
+    {
+        $data=$this->request->getData();
+        $author=$data['name'];
+        $status=$data['status'];
+
+        // if(!empty($author)&&!empty($status)) {
+           $query= $this->Authors->find()
+           ->where([
+                "Authors.name LIKE"=> "%$author%",
+                "Authors.status"=>$status
+            ]);
+            $authors=$query->all();
+            debug($authors);
+            die();
+            // $this->set(compact('authors'));
+        // }
+
+        
     }
 }

@@ -16,11 +16,13 @@ class Publishers extends BaseMigration
     public function change(): void
     {
         $this->table('publishers')
+            ->addColumn('image', 'string')
             ->addColumn('name', 'string', ['limit' => 50])
             ->addColumn('email', 'string', ['limit' => 100])
             ->addColumn('address', 'string', ['limit' => 100])
-            ->addColumn('author_id', 'integer')
-            ->addColumn('created', 'datetime',['null' => true])
+            ->addColumn('status', 'boolean')
+            ->addColumn('author_id', 'integer',['null'=>true])
+            ->addColumn('created', 'datetime', ['null' => true])
             ->addColumn('modified', 'datetime')
             ->addColumn('deleted', 'datetime', ['null' => true])
             // ->addForeignKey('author_id', 'authors', 'id', ['delete' => 'CASCADE'])

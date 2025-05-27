@@ -47,13 +47,37 @@ class PublishersController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
+
+    public function form($id = null)
+    {
+        if (empty($id)) {
+            $publisher = $this->Publishers->newEmptyEntity();
+            $this->set(compact('publisher'));
+            $this->render('form');
+        } else {
+            $publisher = $this->Publishers->get($id);
+            $this->set(compact('publisher'));
+            $this->render('form');
+        }
+    }
+
     public function add()
     {
         $publisher = $this->Publishers->newEmptyEntity();
         $authors = $this->Publishers->Authors->find('list')->toArray();
 
         if ($this->request->is('post')) {
-            $publisher = $this->Publishers->patchEntity($publisher, $this->request->getData());
+            $data = $this->request->getData();
+            $image = $data['image'];
+            unset($data['image']);
+
+            $publisher = $this->Publishers->patchEntity($publisher, $data);
+            if ($image instanceof \Laminas\Diactoros\UploadedFile && $image->getError() === UPLOAD_ERR_OK) {
+                $fileName = time() . '_' . $image->getClientFilename();
+                $path = WWW_ROOT . 'img/uploads/' . $fileName;
+                $image->moveTo($path);
+                $publisher->image = 'uploads/' . $fileName;
+            }
             if ($this->Publishers->save($publisher)) {
                 $this->Flash->success(__('The publisher has been saved.'));
 
@@ -76,11 +100,20 @@ class PublishersController extends AppController
     {
         $publisher = $this->Publishers->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $publisher = $this->Publishers->patchEntity($publisher, $this->request->getData());
-            debug($publisher);
-            die;
+            $data = $this->request->getData();
+            $image = $data['image'];
+            unset($data['image']);
+
+            $publisher = $this->Publishers->patchEntity($publisher, $data);
+
+            if ($image instanceof \Laminas\Diactoros\UploadedFile && $image->getError() === UPLOAD_ERR_OK) {
+                $fileName = time() . '_' . $image->getClientFilename();
+                $path = WWW_ROOT . 'img/uploads/' . $fileName;
+                $image->moveTo($path);
+                $publisher->image = 'uploads/' . $fileName;
+            }
             if ($this->Publishers->save($publisher)) {
-                $this->Flash->success(__('The publisher has been saved.'));
+                $this->Session->setFlash->success(__('The publisher has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
