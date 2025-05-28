@@ -179,4 +179,43 @@ die();
 
         return $this->redirect(['action' => 'index']);
     }
+
+      public function record()
+    {
+        $data = $this->request->getData();
+        $book = $data['name'];
+        $status = $data['status'];
+
+        if (!empty($book) && !empty($status)) {
+            $query = $this->Books->find()
+                ->where([
+                    "Books.name LIKE" => "%$book%",
+                    "Books.status" => $status
+                ]);
+            $books = $this->paginate($query);
+            $this->set(compact('books'));
+            return $this->render('index');
+        }
+        if ($book && empty($status)) {
+            $query = $this->Books->find()
+                ->where([
+                    "Books.name LIKE" => "%$book"
+                ]);
+
+            $books = $this->paginate($query);
+            $this->set(compact('books'));
+            return $this->render('index');
+        }
+        if (empty($book) && !empty($status)) {
+            $query = $this->Books->find()
+                ->where([
+                    "Books.status" => $status
+                ]);
+
+            $books = $this->paginate($query);
+            $this->set(compact('books'));
+            return $this->render('index');
+        }
+        $this->set(compact('books'));
+    }
 }

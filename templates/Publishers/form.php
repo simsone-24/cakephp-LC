@@ -29,7 +29,7 @@
     <label for="status" class="form-label">In Active</label>
     <input type="radio" id="notAvailable" name="status" value="0" <?= (isset($publisher->status) && $publisher->status == 0) ? 'checked' : '' ?>>
 
-    <button class="btn btn-md bg-info" id="submit">Submit</button>
+    <button class="btn btn-md bg-info" id="submitBtn">Submit</button>
 
     <?= $this->Form->end() ?>;
 </div>

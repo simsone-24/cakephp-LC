@@ -29,9 +29,10 @@ use Cake\Controller\Controller;
                 'empty' => 'Status'
             ]) ?>
         </div>
-        <div class="button col-1">
+        <div class=" col-1">
             <?= $this->Form->button('search', [
-                'class' => 'btn btn-sm text-center '
+                'class' => 'btn btn-sm text-center btn-danger p-3',
+                'id'=>'submit'
             ]) ?>
             <?= $this->Form->end() ?>
         </div>

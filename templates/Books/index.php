@@ -5,6 +5,35 @@
  */
 ?>
 <div class="books index content">
+    <div class="row">
+        <div class="name col-3">
+            <?= $this->Form->create(null, [
+                'type' => 'post',
+                'url' => ['controller' => 'Books', 'action' => 'record']
+            ]) ?>
+            <?= $this->form->control('name', [
+                'label' => false,
+                'placeholder' => 'Book Name',
+            ]) ?>
+        </div>
+        <div class="status col-3">
+            <?= $this->form->control('status', [
+                'label' => false,
+                'options' => [ '1' => 'available', '0' => 'not available'],
+                // 'default'=>$field,
+                'class' => 'form-select',
+                'empty' => 'Status'
+            ]) ?>
+        </div>
+        <div class=" col-1">
+            <?= $this->Form->button('search', [
+                'class' => 'btn btn-sm text-center btn-danger p-3',
+                'id'=>'submit'
+            ]) ?>
+            <?= $this->Form->end() ?>
+        </div>
+
+    </div>
     <?= $this->Html->link(__('New Book'), ['action' => 'form'], ['class' => 'button float-right']) ?>
     <h3><?= __('Books') ?></h3>
     <div class="table-responsive">

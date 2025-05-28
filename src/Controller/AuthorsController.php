@@ -18,6 +18,10 @@ class AuthorsController extends AppController
      */
     public function index()
     {
+
+        $this->paginate = [
+            'limit' => 5
+        ];
         $query = $this->Authors->find();
         $authors = $this->paginate($query);
 
@@ -50,15 +54,11 @@ class AuthorsController extends AppController
             $author = $this->Authors->newEmptyEntity();
             $this->set(compact('author'));
             $this->render('form');
-        } 
-        
-        else {
+        } else {
             $author = $this->Authors->get($id);
             $this->set(compact('author'));
             $this->render('form');
         }
-
-       
     }
 
     public function add()
@@ -151,22 +151,45 @@ class AuthorsController extends AppController
 
     public function record()
     {
-        $data=$this->request->getData();
-        $author=$data['name'];
-        $status=$data['status'];
+        $data = $this->request->getData();
+        $author = $data['name'];
+        $status = $data['status'];
 
-        // if(!empty($author)&&!empty($status)) {
-           $query= $this->Authors->find()
-           ->where([
-                "Authors.name LIKE"=> "%$author%",
-                "Authors.status"=>$status
-            ]);
-            $authors=$query->all();
-            debug($authors);
-            die();
-            // $this->set(compact('authors'));
-        // }
+        //  debug($author);
+        //     die();
+        if (!empty($author) && !empty($status)) {
+            $query = $this->Authors->find()
+                ->where([
+                    "Authors.name LIKE" => "%$author%",
+                    "Authors.status" => $status
+                ]);
+            $authors = $this->paginate($query);
+            $this->set(compact('authors'));
+            return $this->render('index');
 
-        
+            // debug($authors);
+            // die();
+        }
+        if ($author && empty($status)) {
+            $query = $this->Authors->find()
+                ->where([
+                    "Authors.name LIKE" => "%$author"
+                ]);
+
+            $authors = $this->paginate($query);
+            $this->set(compact('authors'));
+            return $this->render('index');
+        }
+        if (empty($author) && !empty($status)) {
+            $query = $this->Authors->find()
+                ->where([
+                    "Authors.status" => $status
+                ]);
+
+            $authors = $this->paginate($query);
+            $this->set(compact('authors'));
+            return $this->render('index');
+        }
+        $this->set(compact('authors'));
     }
 }

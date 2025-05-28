@@ -2,6 +2,7 @@
     <h1>Add Book</h1>
     <?= $this->Form->create($book, ['type' => 'file', 'url' => $book->isNew() ? ['action' => 'add'] : ['action' => 'edit', $book->id]]) ?>
     <input type="file" class="dropify" name="image" data-default-file="<?= !empty($book->image) ? $this->url->image($book->image) : '' ?>" value="">
+   
     <label for="name" class="form-label mt-4">Name</label>
     <input type="text" class="form-control" id="name" name="name" value="<?= h($book->name ?? '') ?>">
 
@@ -20,7 +21,7 @@
     <label for="status" class="form-label">Not Available</label>
     <input type="radio" id="notAvailable" name="status" value="0" <?= (isset($book->status) && $book->status == 0) ? 'checked' : '' ?>>
 
-    <button class="btn btn-md bg-info">Submit</button>
+    <button class="btn btn-md bg-info" id="submitBtn">Submit</button>
 
     <?= $this->Form->end() ?>;
 </div>
