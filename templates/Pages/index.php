@@ -14,17 +14,12 @@
           <a class="nav-link active" aria-current="page" href="">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Books</a>
+          <a class="nav-link" href="">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Authors</a>
+          <a class="nav-link" href="#">Register</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Publishers</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Contact</a>
-        </li>
+       
       </ul>
     </div>
   </div>
