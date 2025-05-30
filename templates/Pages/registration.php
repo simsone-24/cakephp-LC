@@ -1,4 +1,4 @@
-<div class="container-fluid col-8 bg-secondary text-white shadow-lg p-5 ">
+<div class="container-fluid register-page col-8 bg-white text-dark shadow-lg p-5  mt-5">
     <div class="title row text-center ">
         <p class="h1 ">Registration Page</p>
     </div>
@@ -22,9 +22,12 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" id="password">
             </div>
-            <div class="col">
-                <button class="btn btn-danger">Login</button>
-            </div>
+
+                <div class="col">
+                    <button class="btn btn-danger px-5">Register</button>
+                    <button onclick="history.back()" class="btn btn-dark px-5">Back</button>
+                </div>               
+               
             <?= $this->Form->end()?>
         </div>
 </div>

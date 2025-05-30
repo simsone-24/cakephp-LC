@@ -5,18 +5,22 @@
  */
 ?>
 <div class="books index content">
-    <div class="row">
-        <div class="name col-3">
+        <div class="row author-index   bg-danger text-white pt-3">
+             <div class="col-3">
+            <h3 class="text-white"><?= __('Books') ?></h3>
+        </div>
+        <div class="name col-2">
             <?= $this->Form->create(null, [
                 'type' => 'post',
                 'url' => ['controller' => 'Books', 'action' => 'record']
             ]) ?>
             <?= $this->form->control('name', [
                 'label' => false,
-                'placeholder' => 'Book Name',
+                'placeholder' => 'Search Name',
+                'class'=>'bg-white'
             ]) ?>
         </div>
-        <div class="status col-3">
+        <div class="status col-2">
             <?= $this->form->control('status', [
                 'label' => false,
                 'options' => [ '1' => 'available', '0' => 'not available'],
@@ -27,16 +31,19 @@
         </div>
         <div class=" col-1">
             <?= $this->Form->button('search', [
-                'class' => 'btn btn-sm text-center btn-danger p-3',
+                'class' => 'search-btn btn btn-sm text-center btn-dark p-3',
                 'id'=>'submit'
             ]) ?>
             <?= $this->Form->end() ?>
         </div>
 
     </div>
+<div class="row mt-5 text-end">
+    <div class="col-3 ">
     <?= $this->Html->link(__('New Book'), ['action' => 'form'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Books') ?></h3>
-    <div class="table-responsive">
+    </div>
+    
+    <div class="table-responsive container">
         <table>
             <thead>
                 <tr>

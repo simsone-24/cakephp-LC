@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+
 /**
  * Users Controller
  *
@@ -16,6 +17,15 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+
+
+    // public function initialize(): void
+    // {
+    //     parent::initialize();
+    //     $this->loadModel('UsersHistory');
+    // }
+
+
     public function index()
     {
         $query = $this->Users->find();
@@ -73,24 +83,36 @@ class UsersController extends AppController
     public function login()
     {
         if ($this->request->is('post')) {
-            $user=$this->Auth->identify();
-            if($user) {
-                $this->Auth->setUser($user);
-                return $this->redirect(['controller'=>'Authors','action'=>'index']);
 
-            }
             $data = $this->request->getData();
             // debug($data);
             // die();
-             $user = $this->Users->find()->where(['email' => $data['email']])->first();
+            $user = $this->Users->find()->where(['email' => $data['email']])->first();
 
-            if($user && password_verify($data['password'],$user->password)){
-                $this->request->getSession()->write('Auth.user',$user);
+            if ($user && password_verify($data['password'], $user->password)) {
+                $this->request->getSession()->write('Auth.user', $user);
                 $this->Flash->success("logged in ");
-                return $this->redirect(['controller'=>'Authors','action'=>'index']);
+                $time = date('Y-m-d H:i:s');
+                $username = $data['email'];
+
+                $data_history = [
+                    'email' => $username,
+                    'time' => $time
+                ];
+
+                // debug($data_history);
+                // die();
+                // $history = $this->UsersHistory->newEmptyEntity();
+
+                // $history = $this->UsersHistory->patchEntity($history, $data_history);
+                // $this->UsersHistory->save($history);
+
+                // debug($time);
+                // die;
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'homepage']);
+
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
-
         }
     }
 

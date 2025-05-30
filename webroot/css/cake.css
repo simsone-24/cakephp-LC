@@ -134,7 +134,8 @@ th a,
 
 /* Main */
 .content {
-    padding: 2rem;
+    padding:0rem 1rem;
+    height: 100vh;
     background: var(--color-white);
     border-radius: 0.4rem;
     /* Thanks Stripe */

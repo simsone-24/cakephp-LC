@@ -1,5 +1,5 @@
-<div class="container-fluid bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+<div class="container-fluid bg-danger">
+    <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
     <a class="navbar-brand fs-1" href="#">CakePhp</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -9,15 +9,19 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto p-2 "> <!-- ms-auto pushes items to the right -->
-        <li class="nav-item ps-4">
-          <a class="nav-link active" aria-current="page" href="">Home</a>
+      <ul class="navbar-nav ms-auto"> <!-- ms-auto pushes items to the right -->
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page" href="">Home</a>
         </li>
-        <li class="nav-item ps-4">
-          <a class="nav-link" href="http://localhost:8765/users/login">Login</a>
+        <li class="nav-item">
+          <a class="nav-link ms-3" href="http://localhost:8765/authors">Authors</a>
         </li>
-        <li class="nav-item ps-4">
-          <a class="nav-link" href="http://localhost:8765/pages/registration">Register</a>
+        <li class="nav-item">
+          <a class="nav-link ms-3" href="http://localhost:8765/books">Books</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link ms-3" href="http://localhost:8765/publishers">Publications</a>
         </li>
        
       </ul>
@@ -26,6 +30,7 @@
 </nav>
 
 </div>
+
 <div class="section ">
   <div class="row">
     <div class="col-12 col-md-6 px-5 justify-content-center">

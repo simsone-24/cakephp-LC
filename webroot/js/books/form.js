@@ -15,6 +15,8 @@ $(document).ready(function () {
         }
     })
 
+
+
     function validation() {
         let image = $('#image').val();
         let name = $('#name').val();

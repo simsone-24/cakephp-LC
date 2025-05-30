@@ -8,19 +8,25 @@
 use Cake\Controller\Controller;
 
 ?>
-<div class="authors index content">
-    <div class="row">
-        <div class="name col-3">
+
+<div class="authors index content ">
+    <div class="row author-index   bg-danger text-white pt-3">
+        <div class="col-3">
+        <h3 class="text-white"><?= __('Authors') ?></h3>
+
+        </div>
+        <div class="name col-2">
             <?= $this->Form->create(null, [
                 'type' => 'post',
                 'url' => ['controller' => 'Authors', 'action' => 'record']
             ]) ?>
             <?= $this->form->control('name', [
                 'label' => false,
-                'placeholder' => 'Author',
+                'placeholder' => 'Search Author',
+                'class'=>'bg-white'
             ]) ?>
         </div>
-        <div class="status col-3">
+        <div class="status col-2">
             <?= $this->form->control('status', [
                 'label' => false,
                 'options' => [ '1' => 'Active', '0' => 'In Active'],
@@ -31,19 +37,21 @@ use Cake\Controller\Controller;
         </div>
         <div class=" col-1">
             <?= $this->Form->button('search', [
-                'class' => 'btn btn-sm text-center btn-danger p-3',
+                'class' => 'search-btn btn btn-sm text-center btn-dark p-3',
                 'id'=>'submit'
             ]) ?>
             <?= $this->Form->end() ?>
         </div>
 
     </div>
-
-    <?= $this->Html->link(__('New Author'), ['action' => 'form'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Authors') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
+<div class="row mt-5 text-end">
+    <div class="col-3 ">
+        <?= $this->Html->link(__('Add New Author'), ['action' => 'form'], ['class' => 'btn btn-lg btn-primary float-right']) ?>
+    </div>
+</div>
+    <div class="table-responsive  container mt-5">
+        <table class="table table-striped">
+            <thead class="table-dark text-white">
                 <tr>
                     <th><?= $this->Paginator->sort('Image') ?></th>
                     <th><?= $this->Paginator->sort('Name') ?></th>
@@ -53,11 +61,11 @@ use Cake\Controller\Controller;
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="">
                 <?php foreach ($authors as $author): ?>
                     <tr>
                         <td><img src="<?= $this->url->image($author->image) ?>" alt="Author image" height="50px"></td>
-                        <td><?= h($author->name) ?></td>
+                        <td ><?= h($author->name) ?></td>
                         <td><?= h($author->email) ?></td>
                         <td><?= h($author->gender) ?></td>
                         <td><?= h($author->status) == '1' ? 'active' : 'InActive' ?></td>
