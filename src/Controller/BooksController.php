@@ -22,7 +22,7 @@ class BooksController extends AppController
         $books = $this->paginate($query);
 
 
-        $this->set(compact('books'));
+        $this->set(compact('books',));
     }
 
 
@@ -186,7 +186,7 @@ die();
         $book = $data['name'];
         $status = $data['status'];
 
-        if (!empty($book) && !empty($status)) {
+        if ($book !== '' && $status !== '') {
             $query = $this->Books->find()
                 ->where([
                     "Books.name LIKE" => "%$book%",
@@ -206,7 +206,7 @@ die();
             $this->set(compact('books'));
             return $this->render('index');
         }
-        if (empty($book) && !empty($status)) {
+        if (($book==='') && $status !=='')  {
             $query = $this->Books->find()
                 ->where([
                     "Books.status" => $status

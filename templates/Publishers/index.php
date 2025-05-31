@@ -5,8 +5,46 @@
  * @var iterable<\App\Model\Entity\Publisher> $publishers
  */
 ?>
-<div class="publishers index content ">
-    <?= $this->Html->link(__('New Publisher'), ['action' => 'form'], ['class' => 'button float-right']) ?>
+<div class="publishers index content">
+    <div class="row author-index   bg-danger text-white pt-3">
+        <div class="col-3">
+            <h3 class="text-white"><?= __('Publishers') ?></h3>
+
+        </div>
+        <div class="name col-2">
+            <?= $this->Form->create(null, [
+                'type' => 'post',
+                'url' => ['controller' => 'Publishers', 'action' => 'record']
+            ]) ?>
+            <?= $this->form->control('name', [
+                'label' => false,
+                'placeholder' => 'Search Publisher',
+                'class' => 'bg-white name',
+                'id' => 'name'
+
+            ]) ?>
+        </div>
+        <div class="status col-2">
+            <?= $this->form->control('status', [
+                'label' => false,
+                'options' => ['1' => 'Active', '0' => 'In Active'],
+                // 'default'=>$field,
+                'class' => 'form-select status',
+                'id' => 'status',
+                'empty' => 'Status'
+            ]) ?>
+        </div>
+        <div class=" col-1">
+            <?= $this->Form->button('search', [
+                'class' => 'search-btn btn btn-sm text-center btn-dark p-3',
+                'id' => 'searchBtn'
+            ]) ?>
+            <?= $this->Form->end() ?>
+        </div>
+
+    </div>
+
+    <?= $this->Html->link(__('New Publisher'), ['action' => 'form'], ['class' => 'button float-right mt-5']) ?>
     <h3 class=""><?= __('Publishers') ?></h3>
     <div class="table-responsive">
         <table>

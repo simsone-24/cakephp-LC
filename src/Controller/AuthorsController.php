@@ -155,14 +155,15 @@ class AuthorsController extends AppController
         $author = $data['name'];
         $status = $data['status'];
 
-        //  debug($author);
+        //  debug($status);
         //     die();
-        if (!empty($author) && !empty($status)) {
+        if ($author !== '' && $status !== '') {
             $query = $this->Authors->find()
                 ->where([
                     "Authors.name LIKE" => "%$author%",
                     "Authors.status" => $status
                 ]);
+
             $authors = $this->paginate($query);
             $this->set(compact('authors'));
             return $this->render('index');
@@ -180,7 +181,7 @@ class AuthorsController extends AppController
             $this->set(compact('authors'));
             return $this->render('index');
         }
-        if (empty($author) && !empty($status)) {
+        if (($author==='') && $status !=='') {
             $query = $this->Authors->find()
                 ->where([
                     "Authors.status" => $status

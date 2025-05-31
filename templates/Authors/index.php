@@ -23,7 +23,9 @@ use Cake\Controller\Controller;
             <?= $this->form->control('name', [
                 'label' => false,
                 'placeholder' => 'Search Author',
-                'class'=>'bg-white'
+                'class'=>'bg-white name',
+                'id'=>'name'
+
             ]) ?>
         </div>
         <div class="status col-2">
@@ -31,14 +33,15 @@ use Cake\Controller\Controller;
                 'label' => false,
                 'options' => [ '1' => 'Active', '0' => 'In Active'],
                 // 'default'=>$field,
-                'class' => 'form-select',
+                'class' => 'form-select status',
+                'id'=>'status',
                 'empty' => 'Status'
             ]) ?>
         </div>
         <div class=" col-1">
             <?= $this->Form->button('search', [
                 'class' => 'search-btn btn btn-sm text-center btn-dark p-3',
-                'id'=>'submit'
+                'id'=>'searchBtn'
             ]) ?>
             <?= $this->Form->end() ?>
         </div>

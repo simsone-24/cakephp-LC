@@ -143,4 +143,43 @@ class PublishersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+      public function record()
+    {
+        $data = $this->request->getData();
+        $publisher = $data['name'];
+        $status = $data['status'];
+
+        if ($publisher !== '' && $status !== '') {
+            $query = $this->Publishers->find()
+                ->where([
+                    "Publishers.name LIKE" => "%$publisher%",
+                    "Publishers.status" => $status
+                ]);
+            $publishers = $this->paginate($query);
+            $this->set(compact('publishers'));
+            return $this->render('index');
+        }
+        if ($publisher && empty($status)) {
+            $query = $this->Publishers->find()
+                ->where([
+                    "Publishers.name LIKE" => "%$publisher"
+                ]);
+
+            $publishers = $this->paginate($query);
+            $this->set(compact('publishers'));
+            return $this->render('index');
+        }
+        if (($publisher==='') && $status !=='')  {
+            $query = $this->Publishers->find()
+                ->where([
+                    "Publishers.status" => $status
+                ]);
+
+            $publishers = $this->paginate($query);
+            $this->set(compact('publishers'));
+            return $this->render('index');
+        }
+        $this->set(compact('books'));
+    }
+
 }

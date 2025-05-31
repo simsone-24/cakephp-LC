@@ -14,8 +14,8 @@
             <input type="password" class="form-control" name="password" id="password">
         </div>
         <div class="col-8 mt-4">
-                    <button class="btn btn-primary px-4">Register</button>
-                    <button onclick="history.back()" class="btn btn-dark px-5 ms-3">Back</button>
+                    <button class="btn btn-primary px-4" id="loginBtn">Login</button>
+                    <button onclick="history.back()"  class="btn btn-dark px-5 ms-3">Back</button>
                 </div>
             </div>
         <?= $this->Form->end()?>

@@ -17,7 +17,7 @@
             <?= $this->form->control('name', [
                 'label' => false,
                 'placeholder' => 'Search Name',
-                'class'=>'bg-white'
+                'class'=>'bg-white name'
             ]) ?>
         </div>
         <div class="status col-2">
@@ -32,7 +32,7 @@
         <div class=" col-1">
             <?= $this->Form->button('search', [
                 'class' => 'search-btn btn btn-sm text-center btn-dark p-3',
-                'id'=>'submit'
+                'id'=>'searchBtn'
             ]) ?>
             <?= $this->Form->end() ?>
         </div>

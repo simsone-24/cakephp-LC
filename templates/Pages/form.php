@@ -1,4 +1,4 @@
-<div class="books form content">
+<div class="books form content container">
     <h1>Add Book</h1>
     <?= $this->Form->create($book, ['type' => 'file', 'url' => $book->isNew() ? ['action' => 'add'] : ['action' => 'edit', $book->id]]) ?>
     <input type="file" class="dropify" name="image" data-default-file="<?= !empty($book->image) ? $this->url->image($book->image) : '' ?>" value="">
@@ -9,7 +9,14 @@
     <label for="year" class="form-label">Publish Year</label>
     <input type="date" class="form-control" id="publishYear" name="publish_year"
         value="<?= isset($book->publish_year) ? h($book->publish_year->format('Y-m-d')) : '' ?>">
-
+<?php if($book->id):?>
+    <label for="author">Author Name</label>
+            <select name="author_id" id="author">
+                 foreach($authors as $author)
+            <option value="$author->id"><?= $author->name ?></option>
+            </select>
+        
+<?php endif; ?>
 
     <label for="rate" class="form-label">Rate</label>
     <input type="text" class="form-control" id="rate" name="rate" value="<?= h($book->rate ?? '') ?>">
